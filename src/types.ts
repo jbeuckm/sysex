@@ -6,7 +6,7 @@ export type SegmentFormat = {
   name: string
   length: number
   encoding: Encoding
-  default?: number[]
+  default: number[]
 }
 
 export type MessageFormat = {

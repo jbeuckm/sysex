@@ -12,11 +12,11 @@ class Sysex {
     this.segments = format.segments.map(format => new Segment(format))
   }
 
-  encode(values: Values = {}) {
-    const bytes = []
+  encode(values: Values = {}): number[] {
+    const bytes: number[] = []
 
     this.segments.forEach(segment => {
-      const segmentBytes = segment.encode(values[segment.name])
+      const segmentBytes = segment.encode(values[segment.format.name])
 
       segmentBytes.forEach(byte => bytes.push(byte))
     })
