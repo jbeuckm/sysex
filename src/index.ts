@@ -13,10 +13,13 @@ class Sysex {
   }
 
   encode(values: Values = {}) {
-    const encodedSegments = this.segments.map(segment => segment.encode(values[segment.name]))
-
     const bytes = []
-    encodedSegments.forEach(segmentBytes => segmentBytes.forEach(byte => bytes.push(byte)))
+
+    this.segments.forEach(segment => {
+      const segmentBytes = segment.encode(values[segment.name])
+
+      segmentBytes.forEach(byte => bytes.push(byte))
+    })
 
     return bytes
   }

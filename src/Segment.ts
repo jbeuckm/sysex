@@ -7,7 +7,7 @@ class Segment {
     this.format = format
   }
 
-  encode(values: Values) {
+  encode(value: number): number[] {
     return this.format.default
   }
 
