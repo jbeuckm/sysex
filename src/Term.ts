@@ -51,28 +51,18 @@ class Term {
       return [this.constant]
     }
 
-    if (this.name) {
-      const param = params && params[this.name]
+    if (this.name && params && typeof params[this.name] !== 'undefined') {
+      return this.transcoder.encode(params[this.name])
+    }
 
-      if (param) {
-        return this.transcoder.encode(param)
-      }
-
-      if (this.default) {
-        return this.default
-      }
+    if (this.default) {
+      return this.default
     }
 
     return Array(this.length).fill(0)
   }
 
   decode(bytes: number[]) {
-    if (bytes.length !== this.length) {
-      throw `Invalid input: ${bytes.map(b => b.toString(16)).join(',')}. Term "${
-        this.term
-      }" can only decode ${this.length} bytes.`
-    }
-
     return this.transcoder.decode(bytes)
   }
 }
