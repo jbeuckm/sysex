@@ -1,6 +1,6 @@
 {
   "name": "sysex",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Encode & Decode MIDI Sysex Messages",
   "main": "dist/index.js",
   "dependencies": {

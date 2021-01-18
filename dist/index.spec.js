@@ -15,5 +15,16 @@ describe('Sysex', function () {
         });
         expect(sysex.encode()).toEqual([0x01, 0x02, 0x03]);
     });
+    test('encodes multiple segments', function () {
+        var sysex = new index_1.default({
+            name: 'test',
+            segments: [
+                { name: 'test', encoding: types_1.Encoding.CONSTANT, length: 1, default: [0x01] },
+                { name: 'test2', encoding: types_1.Encoding.CONSTANT, length: 2, default: [0x02, 0x03] },
+                { name: 'test3', encoding: types_1.Encoding.CONSTANT, length: 3, default: [0x04, 0x05, 0x06] },
+            ],
+        });
+        expect(sysex.encode()).toEqual([0x01, 0x02, 0x03, 0x04, 0x05, 0x06]);
+    });
 });
 //# sourceMappingURL=index.spec.js.map

@@ -1,4 +1,4 @@
-import { Encoding, SegmentFormat, MessageFormat } from './types'
+import { Encoder, SegmentFormat, MessageFormat } from './types'
 import Segment from './Segment'
 
 type Values = Record<string, number>
@@ -8,7 +8,7 @@ class Sysex {
   segments: Segment[]
 
   constructor(format: MessageFormat) {
-    this.name = name
+    this.name = format.name
     this.segments = format.segments.map(format => new Segment(format))
   }
 

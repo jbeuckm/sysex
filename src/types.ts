@@ -1,12 +1,10 @@
-export enum Encoding {
-  CONSTANT = 'constant',
-}
+export type Encoder = 'constant' | 'byte' | 'ascii'
 
 export type SegmentFormat = {
   name: string
   length: number
-  encoding: Encoding
-  default: number[]
+  encoder?: Encoder | ((value?: any) => number[])
+  default?: number | number[]
 }
 
 export type MessageFormat = {
