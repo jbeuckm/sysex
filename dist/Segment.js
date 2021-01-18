@@ -2,7 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Segment = /** @class */ (function () {
     function Segment(format) {
-        this.format = format;
+        if (Array.isArray(format)) {
+            this.format = {
+                name: 'literal',
+                default: format,
+                length: format.length,
+            };
+        }
+        else {
+            this.format = format;
+        }
     }
     Segment.prototype.getDefaultBytes = function () {
         if (typeof this.format.default === 'number') {

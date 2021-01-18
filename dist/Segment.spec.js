@@ -5,6 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Segment_1 = __importDefault(require("./Segment"));
 describe('Segment', function () {
+    test('encodes a literal segment', function () {
+        var segment = new Segment_1.default([0x01, 0x02, 0x03]);
+        expect(segment.encode()).toEqual([0x01, 0x02, 0x03]);
+    });
     test('encodes a constant segment', function () {
         var segment = new Segment_1.default({
             name: 'test',

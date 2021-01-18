@@ -7,7 +7,7 @@ var Segment_1 = __importDefault(require("./Segment"));
 var Sysex = /** @class */ (function () {
     function Sysex(format) {
         this.name = format.name;
-        this.segments = format.segments.map(function (format) { return new Segment_1.default(format); });
+        this.segments = format.segments.map(function (segmentFormat) { return new Segment_1.default(segmentFormat); });
     }
     Sysex.prototype.encode = function (values) {
         if (values === void 0) { values = {}; }

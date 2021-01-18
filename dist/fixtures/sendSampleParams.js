@@ -3,13 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var format = {
     name: 'sendSampleParams',
     segments: [
-        { name: 'prefix', length: 3, default: [0x43, 0x00, 0x7a] },
-        { name: 'byteCount', length: 2, default: [0x00, 0x32] },
-        {
-            name: 'messageType',
-            length: 10,
-            default: [0x4c, 0x4d, 0x20, 0x20, 0x30, 0x30, 0x34, 0x30, 0x53, 0x41],
-        },
+        [0x43, 0x00, 0x7a],
+        [0x00, 0x32],
+        [0x4c, 0x4d, 0x20, 0x20, 0x30, 0x30, 0x34, 0x30, 0x53, 0x41],
         { name: 'zeroBody', length: 16, default: 0x00 },
         { name: 'sampleNumber', length: 1, encoder: 'byte', default: 0x00 },
         { name: 'sampleName', length: 8, encoder: 'ascii', default: 0x00 },
