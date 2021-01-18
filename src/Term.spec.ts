@@ -15,7 +15,7 @@ describe('Term', () => {
     expect(term.encode({ deviceId: 3 })).toEqual([0x03])
   })
 
-  test('parse parametrized term with length', () => {
+  test('encode parametrized term with length', () => {
     const term = new Term('value[3]', { sentence: [], defaults: { value: [0x01, 0x02, 0x03] } })
 
     expect(term.encode()).toEqual([0x01, 0x02, 0x03])

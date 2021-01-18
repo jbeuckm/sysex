@@ -13,6 +13,22 @@ class Term {
     return [value]
   }
 
+  constructor(term: string, format?: string | SentenceFormat) {
+    this.term = term
+
+    const root = this.extractLength(term)
+
+    if (root.match(BYTE_REGEX)) {
+      this.constant = parseInt(root, 16)
+      return
+    }
+
+    this.name = root
+    if (typeof format === 'object') {
+      this.default = format.defaults && format.defaults[this.name]
+    }
+  }
+
   extractLength(term: string) {
     const length = term.match(LENGTH_REGEX)
 
@@ -22,21 +38,6 @@ class Term {
     } else {
       this.length = 1
       return term
-    }
-  }
-
-  constructor(term: string, format?: string | SentenceFormat) {
-    this.term = term
-
-    const core = this.extractLength(term)
-
-    if (core.match(BYTE_REGEX)) {
-      this.constant = parseInt(core, 16)
-    } else {
-      this.name = core
-      if (typeof format === 'object') {
-        this.default = format.defaults && format.defaults[this.name]
-      }
     }
   }
 
