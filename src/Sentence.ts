@@ -2,9 +2,9 @@ import { SentenceFormat } from './types'
 import Term from './Term'
 
 class Sentence {
-  terms: string[]
+  terms: Term[]
 
-  constructor(format: strring | SentenceFormat) {
+  constructor(format: string | SentenceFormat) {
     let fullTerms
 
     if (typeof format === 'string') {
@@ -19,7 +19,15 @@ class Sentence {
       .map(term => new Term(term, format))
   }
 
-  encode(params: Record<string, any>) {}
+  encode(params?: Record<string, any>) {
+    const bytes: number[] = []
+    this.terms.forEach(term => {
+      bytes.push(...term.encode(params))
+    })
+
+    return bytes
+  }
+
   decode(bytes: number[]) {}
 }
 
