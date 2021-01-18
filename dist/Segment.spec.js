@@ -4,12 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Segment_1 = __importDefault(require("./Segment"));
-var types_1 = require("./types");
 describe('Segment', function () {
     test('encodes a constant segment', function () {
         var segment = new Segment_1.default({
             name: 'test',
-            encoding: types_1.Encoding.CONSTANT,
+            encoder: 'constant',
             length: 3,
             default: [0x01, 0x02, 0x03],
         });
@@ -18,7 +17,7 @@ describe('Segment', function () {
     test('uses a single default value as fill', function () {
         var segment = new Segment_1.default({
             name: 'test',
-            encoding: types_1.Encoding.CONSTANT,
+            encoder: 'constant',
             length: 3,
             default: 0x11,
         });
@@ -27,7 +26,7 @@ describe('Segment', function () {
     test('encodes a byte segment', function () {
         var segment = new Segment_1.default({
             name: 'test',
-            encoding: types_1.Encoding.BYTE,
+            encoder: 'byte',
             length: 1,
             default: 0x11,
         });
@@ -37,13 +36,25 @@ describe('Segment', function () {
     test('encodes an ascii segment', function () {
         var segment = new Segment_1.default({
             name: 'test',
-            encoding: types_1.Encoding.ASCII,
+            encoder: 'ascii',
             length: 8,
             default: 0x08,
         });
         expect(segment.encode()).toEqual([0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08]);
         expect(segment.encode('bass drums')).toEqual([0x62, 0x61, 0x73, 0x73, 0x20, 0x64, 0x72, 0x75]);
         expect(segment.encode('bass')).toEqual([0x62, 0x61, 0x73, 0x73, 0x08, 0x08, 0x08, 0x08]);
+    });
+    test('encodes with custom function', function () {
+        var segment = new Segment_1.default({
+            name: 'test',
+            encoder: function (value) {
+                var addend = value || 0;
+                return [0x76 + addend, 0x77 + addend];
+            },
+            length: 2,
+        });
+        expect(segment.encode()).toEqual([0x76, 0x77]);
+        expect(segment.encode(1)).toEqual([0x77, 0x78]);
     });
 });
 //# sourceMappingURL=Segment.spec.js.map

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("./types");
 var Segment = /** @class */ (function () {
     function Segment(format) {
         this.format = format;
@@ -9,11 +8,14 @@ var Segment = /** @class */ (function () {
         if (typeof this.format.default === 'number') {
             return Array(this.format.length).fill(this.format.default);
         }
-        return this.format.default;
+        return this.format.default || Array(this.format.length).fill(0x00);
     };
     Segment.prototype.encode = function (value) {
-        switch (this.format.encoding) {
-            case types_1.Encoding.BYTE:
+        if (typeof this.format.encoder === 'function') {
+            return this.format.encoder(value);
+        }
+        switch (this.format.encoder) {
+            case 'byte':
                 if (value !== undefined) {
                     return [Number(value)];
                 }
@@ -21,7 +23,7 @@ var Segment = /** @class */ (function () {
                     return [this.format.default];
                 }
                 break;
-            case types_1.Encoding.ASCII: {
+            case 'ascii': {
                 var bytes = this.getDefaultBytes();
                 if (typeof value === 'string') {
                     for (var i = 0; i < this.format.length; i++) {
@@ -34,7 +36,7 @@ var Segment = /** @class */ (function () {
                 return bytes;
                 break;
             }
-            case types_1.Encoding.CONSTANT:
+            case 'constant':
             default:
                 return this.getDefaultBytes();
                 break;

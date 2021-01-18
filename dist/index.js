@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Segment_1 = __importDefault(require("./Segment"));
 var Sysex = /** @class */ (function () {
     function Sysex(format) {
-        this.name = name;
+        this.name = format.name;
         this.segments = format.segments.map(function (format) { return new Segment_1.default(format); });
     }
     Sysex.prototype.encode = function (values) {
