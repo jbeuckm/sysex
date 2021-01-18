@@ -7,7 +7,9 @@ export type SegmentFormat = {
   default?: number | number[]
 }
 
+export type LiteralSegment = number[]
+
 export type MessageFormat = {
   name: string
-  segments: SegmentFormat[]
+  segments: (SegmentFormat | LiteralSegment)[]
 }

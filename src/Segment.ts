@@ -3,8 +3,16 @@ import { Encoder, SegmentFormat } from './types'
 class Segment {
   format: SegmentFormat
 
-  constructor(format: SegmentFormat) {
-    this.format = format
+  constructor(format: SegmentFormat | number[]) {
+    if (Array.isArray(format)) {
+      this.format = {
+        name: 'literal',
+        default: format,
+        length: format.length,
+      }
+    } else {
+      this.format = format
+    }
   }
 
   getDefaultBytes(): number[] {

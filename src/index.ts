@@ -9,7 +9,7 @@ class Sysex {
 
   constructor(format: MessageFormat) {
     this.name = format.name
-    this.segments = format.segments.map(format => new Segment(format))
+    this.segments = format.segments.map(segmentFormat => new Segment(segmentFormat))
   }
 
   encode(values: Values = {}): number[] {

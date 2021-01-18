@@ -2,6 +2,12 @@ import Segment from './Segment'
 import { Encoder } from './types'
 
 describe('Segment', () => {
+  test('encodes a literal segment', () => {
+    const segment = new Segment([0x01, 0x02, 0x03])
+
+    expect(segment.encode()).toEqual([0x01, 0x02, 0x03])
+  })
+
   test('encodes a constant segment', () => {
     const segment = new Segment({
       name: 'test',

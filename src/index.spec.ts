@@ -17,7 +17,7 @@ describe('Sysex', () => {
     const sysex = new Sysex({
       name: 'test',
       segments: [
-        { name: 'test', encoder: 'constant', length: 1, default: [0x01] },
+        [0x01],
         { name: 'test2', encoder: 'constant', length: 2, default: [0x02, 0x03] },
         { name: 'test3', encoder: 'constant', length: 3, default: [0x04, 0x05, 0x06] },
       ],
@@ -30,6 +30,5 @@ describe('Sysex', () => {
     const sysex = new Sysex(sendSampleParams as MessageFormat)
 
     const bytes = sysex.encode()
-    console.log(bytes.map(n => n.toString(16)).join(','))
   })
 })
