@@ -28,5 +28,8 @@ describe('Sysex', () => {
 
   test('encodes sy99 sample params dump', () => {
     const sysex = new Sysex(sendSampleParams as MessageFormat)
+
+    const bytes = sysex.encode()
+    console.log(bytes.map(n => n.toString(16)).join(','))
   })
 })

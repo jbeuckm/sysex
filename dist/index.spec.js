@@ -26,6 +26,8 @@ describe('Sysex', function () {
     });
     test('encodes sy99 sample params dump', function () {
         var sysex = new index_1.default(sendSampleParams_1.default);
+        var bytes = sysex.encode();
+        console.log(bytes.map(function (n) { return n.toString(16); }).join(','));
     });
 });
 //# sourceMappingURL=index.spec.js.map

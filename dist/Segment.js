@@ -8,7 +8,9 @@ var Segment = /** @class */ (function () {
         if (typeof this.format.default === 'number') {
             return Array(this.format.length).fill(this.format.default);
         }
-        return this.format.default || Array(this.format.length).fill(0x00);
+        return Array.isArray(this.format.default)
+            ? this.format.default
+            : Array(this.format.length).fill(0x00);
     };
     Segment.prototype.encode = function (value) {
         if (typeof this.format.encoder === 'function') {

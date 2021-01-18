@@ -12,7 +12,9 @@ class Segment {
       return Array(this.format.length).fill(this.format.default)
     }
 
-    return this.format.default || Array(this.format.length).fill(0x00)
+    return Array.isArray(this.format.default)
+      ? this.format.default
+      : Array(this.format.length).fill(0x00)
   }
 
   encode(value?: number | string): number[] {
