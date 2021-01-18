@@ -1,4 +1,4 @@
-# Sysex MIDI Message Transcoder
+# MIDI Sysex Message Transcoder
 
 _Sysex_ implements a two-way mapper from parameters to MIDI sysex message bytes.
 

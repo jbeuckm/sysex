@@ -19,7 +19,7 @@ describe('Term', () => {
     const term = new Term('value[3]', { sentence: [], defaults: { value: [0x01, 0x02, 0x03] } })
 
     expect(term.encode()).toEqual([0x01, 0x02, 0x03])
-    // expect(term.encode({ value: 3 })).toEqual([0x00, 0x00, 0x03])
+    expect(term.encode({ value: 3 })).toEqual([0x00, 0x00, 0x03])
   })
 
   test('decode wrong number of bytes', () => {
