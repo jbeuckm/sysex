@@ -32,7 +32,7 @@ class Identity implements Transcoder {
 
   decode(bytes: number[]): number {
     if (bytes.length !== this.length) {
-      throw `Decoder(${this.length}) called with ${bytes.length} bytes.`
+      throw `Decoder[${this.length}] called with ${bytes.length} bytes.`
     }
 
     let value = 0

@@ -23,6 +23,8 @@ describe('Sentence', () => {
 
   test('parse parametrized format', () => {
     const sentence = new Sentence(TEST_FORMAT)
-    // console.log(sentence)
+
+    const bytes = sentence.encode({ name: 'test' })
+    // console.log(bytes)
   })
 })

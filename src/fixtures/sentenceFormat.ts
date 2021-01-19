@@ -1,4 +1,5 @@
 import { SentenceFormat } from '../types'
+import Ascii from '../transcoders/Ascii'
 
 const format: SentenceFormat = {
   sentence: [
@@ -12,6 +13,9 @@ const format: SentenceFormat = {
     pitchCode: [0x00, 0x14, 0x00, 0x28],
     volCode: [0x00, 0x00],
     lowKey: [0x00, 0x00, 0x00, 0x00],
+  },
+  transcoders: {
+    name: new Ascii(8),
   },
 }
 
