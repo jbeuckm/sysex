@@ -24,7 +24,10 @@ describe('Sentence', () => {
   test('parse parametrized format', () => {
     const sentence = new Sentence(TEST_FORMAT)
 
-    const bytes = sentence.encode({ name: 'test' })
-    // console.log(bytes)
+    // @todo test a string with length < term.length
+    const bytes = sentence.encode({ name: 'testcase' })
+    const values = sentence.decode(bytes)
+
+    expect(values.name).toEqual('testcase')
   })
 })

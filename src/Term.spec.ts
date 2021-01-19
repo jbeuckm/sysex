@@ -22,6 +22,12 @@ describe('Term', () => {
     expect(term.encode({ value: 3 })).toEqual([0x00, 0x00, 0x03])
   })
 
+  test('encode constant term with length', () => {
+    const term = new Term('00[5]', '')
+
+    expect(term.encode()).toEqual([0, 0, 0, 0, 0])
+  })
+
   test('decode wrong number of bytes', () => {
     const term = new Term('value[3]', '')
 

@@ -48,7 +48,7 @@ class Term {
 
   encode(params?: Record<string, any>): number[] {
     if (typeof this.constant !== 'undefined') {
-      return [this.constant]
+      return Array(this.length).fill(this.constant)
     }
 
     if (this.name && params && typeof params[this.name] !== 'undefined') {

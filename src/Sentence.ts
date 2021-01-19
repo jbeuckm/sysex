@@ -28,7 +28,19 @@ class Sentence {
     return bytes
   }
 
-  decode(bytes: number[]) {}
+  decode(bytes: number[]) {
+    const values: Record<string, any> = {}
+
+    this.terms.forEach(term => {
+      const termBytes = bytes.splice(0, term.length)
+
+      if (term.name) {
+        values[term.name] = term.decode(termBytes)
+      }
+    })
+
+    return values
+  }
 }
 
 export default Sentence
