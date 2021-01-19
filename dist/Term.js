@@ -38,7 +38,7 @@ var Term = /** @class */ (function () {
     };
     Term.prototype.encode = function (params) {
         if (typeof this.constant !== 'undefined') {
-            return [this.constant];
+            return Array(this.length).fill(this.constant);
         }
         if (this.name && params && typeof params[this.name] !== 'undefined') {
             return this.transcoder.encode(params[this.name]);

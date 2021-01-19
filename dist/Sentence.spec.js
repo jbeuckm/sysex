@@ -23,7 +23,10 @@ describe('Sentence', function () {
     });
     test('parse parametrized format', function () {
         var sentence = new Sentence_1.default(sentenceFormat_1.default);
-        // console.log(sentence)
+        // @todo test a string with length < term.length
+        var bytes = sentence.encode({ name: 'testcase' });
+        var values = sentence.decode(bytes);
+        expect(values.name).toEqual('testcase');
     });
 });
 //# sourceMappingURL=Sentence.spec.js.map

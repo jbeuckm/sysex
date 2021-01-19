@@ -24,7 +24,7 @@ var Identity = /** @class */ (function () {
     };
     Identity.prototype.decode = function (bytes) {
         if (bytes.length !== this.length) {
-            throw "Decoder(" + this.length + ") called with " + bytes.length + " bytes.";
+            throw "Decoder[" + this.length + "] called with " + bytes.length + " bytes.";
         }
         var value = 0;
         bytes.forEach(function (byte, i) {

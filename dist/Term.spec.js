@@ -20,6 +20,10 @@ describe('Term', function () {
         expect(term.encode()).toEqual([0x01, 0x02, 0x03]);
         expect(term.encode({ value: 3 })).toEqual([0x00, 0x00, 0x03]);
     });
+    test('encode constant term with length', function () {
+        var term = new Term_1.default('00[5]', '');
+        expect(term.encode()).toEqual([0, 0, 0, 0, 0]);
+    });
     test('decode wrong number of bytes', function () {
         var term = new Term_1.default('value[3]', '');
         expect(function () { return term.decode([0]); }).toThrow();

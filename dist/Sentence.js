@@ -25,7 +25,16 @@ var Sentence = /** @class */ (function () {
         });
         return bytes;
     };
-    Sentence.prototype.decode = function (bytes) { };
+    Sentence.prototype.decode = function (bytes) {
+        var values = {};
+        this.terms.forEach(function (term) {
+            var termBytes = bytes.splice(0, term.length);
+            if (term.name) {
+                values[term.name] = term.decode(termBytes);
+            }
+        });
+        return values;
+    };
     return Sentence;
 }());
 exports.default = Sentence;

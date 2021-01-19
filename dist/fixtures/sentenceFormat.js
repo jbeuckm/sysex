@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var Ascii_1 = __importDefault(require("../transcoders/Ascii"));
 var format = {
     sentence: [
         '43 device 7a 00 32',
@@ -12,6 +16,9 @@ var format = {
         pitchCode: [0x00, 0x14, 0x00, 0x28],
         volCode: [0x00, 0x00],
         lowKey: [0x00, 0x00, 0x00, 0x00],
+    },
+    transcoders: {
+        name: new Ascii_1.default(8),
     },
 };
 exports.default = format;
