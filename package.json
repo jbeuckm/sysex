@@ -1,6 +1,6 @@
 {
   "name": "sysex",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Encode & Decode MIDI Sysex Messages",
   "main": "dist/index.js",
   "dependencies": {
@@ -20,8 +20,8 @@
   },
   "keywords": [
     "midi",
-    "system",
-    "exclusive"
+    "system exclusive",
+    "sysex"
   ],
   "author": "Joseph Beuckman",
   "license": "MIT",
