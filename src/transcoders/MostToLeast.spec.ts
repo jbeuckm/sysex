@@ -1,8 +1,8 @@
-import Identity from './Identity'
+import MostToLeast from './MostToLeast'
 
-describe('Identity Transcoder', () => {
+describe('MostToLeast Transcoder', () => {
   test('encode one byte', () => {
-    const i = new Identity(1)
+    const i = new MostToLeast(1)
 
     expect(i.encode()).toEqual([0])
     expect(i.encode(1)).toEqual([0x01])
@@ -10,14 +10,14 @@ describe('Identity Transcoder', () => {
   })
 
   test('encode two bytes', () => {
-    const i = new Identity(2)
+    const i = new MostToLeast(2)
 
     expect(i.encode(0xff)).toEqual([0x01, 0x7f])
     expect(() => i.encode(0xffff)).toThrow()
   })
 
   test('decode one byte', () => {
-    const i = new Identity(1)
+    const i = new MostToLeast(1)
 
     expect(i.decode([0x00])).toEqual(0)
     expect(i.decode([0x01])).toEqual(1)
@@ -25,7 +25,7 @@ describe('Identity Transcoder', () => {
   })
 
   test('decode two bytes', () => {
-    const i = new Identity(2)
+    const i = new MostToLeast(2)
 
     expect(() => i.decode([0x00])).toThrow()
     expect(i.decode([0x00, 0x01])).toEqual(1)

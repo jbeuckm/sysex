@@ -1,15 +1,9 @@
 import { Transcoder } from '../types'
 
 /*
- * Transcode a number as 7bit chunks right justified
+ * Most to least significat 7bit chunks
  */
-class Identity implements Transcoder {
-  length: number
-
-  constructor(length: number) {
-    this.length = length
-  }
-
+class MostToLeast extends Transcoder {
   encode(value?: number): number[] {
     const bytes = []
 
@@ -45,4 +39,4 @@ class Identity implements Transcoder {
   }
 }
 
-export default Identity
+export default MostToLeast

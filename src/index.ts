@@ -1,6 +1,7 @@
 import Sentence from './Sentence'
-import Identity from './transcoders/Identity'
+import MostToLeast from './transcoders/MostToLeast'
+import LeastToMost from './transcoders/LeastToMost'
 import Ascii from './transcoders/Ascii'
 
 export default Sentence
-export { Identity, Ascii }
+export { MostToLeast, LeastToMost, Ascii }

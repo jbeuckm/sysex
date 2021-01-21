@@ -15,7 +15,7 @@ const format: SentenceFormat = {
     lowKey: [0x00, 0x00, 0x00, 0x00],
   },
   transcoders: {
-    name: new Ascii(8),
+    name: Ascii,
   },
 }
 

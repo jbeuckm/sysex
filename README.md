@@ -48,7 +48,7 @@ import Sentence, { Ascii } from 'sysex'
 const sysex = new Sentence({
   sentence: [ '33 name[6] 66' ],
   transcoders: {
-    name: new Ascii(6),
+    name: Ascii,
   },
 })
 

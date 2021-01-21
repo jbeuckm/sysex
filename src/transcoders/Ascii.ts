@@ -3,13 +3,7 @@ import { Transcoder } from '../types'
 /*
  * Transcode a number as 7bit chunks right justified
  */
-class Ascii implements Transcoder {
-  length: number
-
-  constructor(length: number) {
-    this.length = length
-  }
-
+class Ascii extends Transcoder {
   encode(value?: string): number[] {
     if (!value) {
       return Array(this.length).fill(0)

@@ -1,5 +1,5 @@
 import { SentenceFormat, Transcoder } from './types'
-import Identity from './transcoders/Identity'
+import MostToLeast from './transcoders/MostToLeast'
 
 const LENGTH_REGEX = /\[(\d+)\]$/
 const BYTE_REGEX = /^[0-9a-f]{2}$/
@@ -10,13 +10,13 @@ class Term {
   length: number = 1
   constant?: number
   default?: number[]
-  transcoder: Transcoder
+  Transcoder: typeof Transcoder
 
   constructor(term: string, format?: string | SentenceFormat) {
     this.term = term
 
+    this.Transcoder = this.extractTranscoder(term)
     const root = this.extractLength(term)
-    this.transcoder = new Identity(this.length)
 
     if (root.match(BYTE_REGEX)) {
       this.constant = parseInt(root, 16)
@@ -29,9 +29,13 @@ class Term {
 
       const transcoder = format.transcoders && format.transcoders[this.name]
       if (transcoder) {
-        this.transcoder = transcoder
+        this.Transcoder = transcoder
       }
     }
+  }
+
+  extractTranscoder(term: string) {
+    return MostToLeast
   }
 
   extractLength(term: string) {
@@ -47,12 +51,14 @@ class Term {
   }
 
   encode(params?: Record<string, any>): number[] {
+    const transcoder = new this.Transcoder(this.length)
+
     if (typeof this.constant !== 'undefined') {
       return Array(this.length).fill(this.constant)
     }
 
     if (this.name && params && typeof params[this.name] !== 'undefined') {
-      return this.transcoder.encode(params[this.name])
+      return transcoder.encode(params[this.name])
     }
 
     if (this.default) {
@@ -63,7 +69,9 @@ class Term {
   }
 
   decode(bytes: number[]) {
-    return this.transcoder.decode(bytes)
+    const transcoder = new this.Transcoder(this.length)
+
+    return transcoder.decode(bytes)
   }
 }
 
