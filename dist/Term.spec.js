@@ -30,5 +30,17 @@ describe('Term', function () {
         expect(function () { return term.decode([0, 1, 2, 3]); }).toThrow();
         expect(function () { return term.decode([0, 1, 2]); }).not.toThrow();
     });
+    test('shortcode for Ascii transcoder', function () {
+        var term = new Term_1.default('name[4]*', '');
+        expect(term.encode({ name: 'bass' })).toEqual([0x62, 0x61, 0x73, 0x73]);
+    });
+    test('shortcode for MostToLeast transcoder', function () {
+        var term = new Term_1.default('freq[2]\\', '');
+        expect(term.encode({ freq: 0xff })).toEqual([0x01, 0x7f]);
+    });
+    test('shortcode for LeastToMost transcoder', function () {
+        var term = new Term_1.default('freq[2]/', '');
+        expect(term.encode({ freq: 0xff })).toEqual([0x7f, 0x01]);
+    });
 });
 //# sourceMappingURL=Term.spec.js.map

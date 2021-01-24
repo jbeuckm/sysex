@@ -15,34 +15,39 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var types_1 = require("../types");
 /*
- * Transcode a number as 7bit chunks right justified
+ * Most to least significat 7bit chunks
  */
-var Ascii = /** @class */ (function (_super) {
-    __extends(Ascii, _super);
-    function Ascii() {
+var MostToLeast = /** @class */ (function (_super) {
+    __extends(MostToLeast, _super);
+    function MostToLeast() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Ascii.prototype.encode = function (value) {
-        if (!value) {
-            return Array(this.length).fill(0);
-        }
+    MostToLeast.prototype.encode = function (value) {
         var bytes = [];
-        var valueLength = Math.min(value.length, this.length);
-        for (var i = 0; i < valueLength; i++) {
-            bytes.push(value.charCodeAt(i));
+        var acc = value || 0;
+        while (acc > 0) {
+            bytes.unshift(acc & 0x7f);
+            acc >>>= 7;
+        }
+        if (bytes.length > this.length) {
+            throw "Value \"" + value + "\" too large to fit in " + this.length + " bytes.";
         }
         while (bytes.length < this.length) {
-            bytes.push(0);
+            bytes.unshift(0);
         }
         return bytes;
     };
-    Ascii.prototype.decode = function (bytes) {
+    MostToLeast.prototype.decode = function (bytes) {
         if (bytes.length !== this.length) {
             throw "Decoder[" + this.length + "] called with " + bytes.length + " bytes.";
         }
-        return bytes.map(function (byte) { return String.fromCharCode(byte); }).join('');
+        var value = 0;
+        bytes.forEach(function (byte, i) {
+            value = (value << 7) | byte;
+        });
+        return value;
     };
-    return Ascii;
+    return MostToLeast;
 }(types_1.Transcoder));
-exports.default = Ascii;
-//# sourceMappingURL=Ascii.js.map
+exports.default = MostToLeast;
+//# sourceMappingURL=MostToLeast.js.map

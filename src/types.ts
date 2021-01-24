@@ -1,13 +1,15 @@
-export abstract class Transcoder {
+export class Transcoder {
   length: number
 
   constructor(length: number) {
     this.length = length
   }
 
-  abstract encode(input: any): number[]
+  encode(input: any): number[] {
+    return []
+  }
 
-  abstract decode(bytes: number[]): any
+  decode(bytes: number[]): any {}
 }
 
 export type SentenceFormat = {

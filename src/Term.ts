@@ -1,8 +1,16 @@
 import { SentenceFormat, Transcoder } from './types'
-import MostToLeast from './transcoders/MostToLeast'
+import { Ascii, LeastToMost, MostToLeast } from './transcoders'
 
 const LENGTH_REGEX = /\[(\d+)\]$/
 const BYTE_REGEX = /^[0-9a-f]{2}$/
+
+const transcoders = [
+  { suffix: '*', transcoder: Ascii },
+  { suffix: '/', transcoder: LeastToMost },
+  { suffix: '\\', transcoder: MostToLeast },
+]
+
+const escape = (char: string) => char.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
 
 class Term {
   term: string
@@ -10,13 +18,13 @@ class Term {
   length: number = 1
   constant?: number
   default?: number[]
-  Transcoder: typeof Transcoder
+  Transcoder!: typeof Transcoder
 
   constructor(term: string, format?: string | SentenceFormat) {
     this.term = term
 
-    this.Transcoder = this.extractTranscoder(term)
-    const root = this.extractLength(term)
+    let root = this.extractTranscoder(term)
+    root = this.extractLength(root)
 
     if (root.match(BYTE_REGEX)) {
       this.constant = parseInt(root, 16)
@@ -35,7 +43,19 @@ class Term {
   }
 
   extractTranscoder(term: string) {
-    return MostToLeast
+    for (let i = 0; i < transcoders.length; i++) {
+      const transcoder = transcoders[i]
+
+      const suffixRegex = new RegExp(`${escape(transcoder.suffix)}$`)
+
+      if (term.match(suffixRegex)) {
+        this.Transcoder = transcoder.transcoder
+        return term.replace(suffixRegex, '')
+      }
+    }
+
+    this.Transcoder = MostToLeast
+    return term
   }
 
   extractLength(term: string) {

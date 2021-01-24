@@ -18,7 +18,7 @@ var format = {
         lowKey: [0x00, 0x00, 0x00, 0x00],
     },
     transcoders: {
-        name: new Ascii_1.default(8),
+        name: Ascii_1.default,
     },
 };
 exports.default = format;

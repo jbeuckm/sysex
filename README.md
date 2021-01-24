@@ -19,7 +19,7 @@ const sysex = new Sentence(simple)
 sysex.encode({ deviceId: 1 }) // [0x43, 0x01, 0x00, 0x7a]
 ```
 
-To provide default parameter values, use an object to initialize the Sentence.
+To provide default parameter values, use an object to construct the Sentence.
 
 ```
 const sysex = new Sentence({
@@ -54,3 +54,17 @@ const sysex = new Sentence({
 
 sysex.encode({ name: 'bass' }) // [0x33, 0x62, 0x61, 0x73, 0x73, 0x00, 0x00, 0x66 ]
 ```
+
+These transcoders can be described by adding a symbol to the term string:
+
+Most significant to least significant 7-bit chunks: `\`
+
+- Example: `freq[3]\`
+
+Least to most significant 7-bit chunks: `/`
+
+- Example: `resonance[2]/`
+
+Ascii bytes: `*`
+
+- Example: `patchName[8]*`
