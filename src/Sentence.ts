@@ -19,7 +19,7 @@ class Sentence {
       .map(term => new Term(term, format))
   }
 
-  encode(params?: Record<string, any>) {
+  encode(params?: Record<string, number | string>): number[] {
     const bytes: number[] = []
     this.terms.forEach(term => {
       bytes.push(...term.encode(params))
@@ -28,8 +28,8 @@ class Sentence {
     return bytes
   }
 
-  decode(bytes: number[]) {
-    const values: Record<string, any> = {}
+  decode(bytes: number[]): Record<string, number | string> {
+    const values: Record<string, number | string> = {}
 
     this.terms.forEach(term => {
       const termBytes = bytes.splice(0, term.length)

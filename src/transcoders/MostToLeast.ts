@@ -31,7 +31,7 @@ class MostToLeast extends Transcoder {
 
     let value = 0
 
-    bytes.forEach((byte: number, i: number) => {
+    bytes.forEach((byte: number) => {
       value = (value << 7) | byte
     })
 
