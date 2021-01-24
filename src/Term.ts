@@ -15,7 +15,7 @@ const escape = (char: string) => char.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
 class Term {
   term: string
   name?: string
-  length: number = 1
+  length = 1
   constant?: number
   default?: number[]
   Transcoder!: typeof Transcoder

@@ -9,7 +9,9 @@ export class Transcoder {
     return []
   }
 
-  decode(bytes: number[]): any {}
+  decode(bytes: number[]): any {
+    return 0
+  }
 }
 
 export type SentenceFormat = {
