@@ -5,11 +5,11 @@ export class Transcoder {
     this.length = length
   }
 
-  encode(input: any): number[] {
+  encode(input?: number | string): number[] {
     return []
   }
 
-  decode(bytes: number[]): any {
+  decode(bytes: number[]): number | string {
     return 0
   }
 }

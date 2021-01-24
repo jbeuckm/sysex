@@ -42,7 +42,7 @@ var MostToLeast = /** @class */ (function (_super) {
             throw "Decoder[" + this.length + "] called with " + bytes.length + " bytes.";
         }
         var value = 0;
-        bytes.forEach(function (byte, i) {
+        bytes.forEach(function (byte) {
             value = (value << 7) | byte;
         });
         return value;

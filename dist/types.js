@@ -8,7 +8,9 @@ var Transcoder = /** @class */ (function () {
     Transcoder.prototype.encode = function (input) {
         return [];
     };
-    Transcoder.prototype.decode = function (bytes) { };
+    Transcoder.prototype.decode = function (bytes) {
+        return 0;
+    };
     return Transcoder;
 }());
 exports.Transcoder = Transcoder;

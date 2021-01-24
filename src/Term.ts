@@ -42,7 +42,7 @@ class Term {
     }
   }
 
-  extractTranscoder(term: string) {
+  extractTranscoder(term: string): string {
     for (let i = 0; i < transcoders.length; i++) {
       const transcoder = transcoders[i]
 
@@ -58,7 +58,7 @@ class Term {
     return term
   }
 
-  extractLength(term: string) {
+  extractLength(term: string): string {
     const length = term.match(LENGTH_REGEX)
 
     if (length && length[1]) {
@@ -70,7 +70,7 @@ class Term {
     }
   }
 
-  encode(params?: Record<string, any>): number[] {
+  encode(params?: Record<string, number | string>): number[] {
     const transcoder = new this.Transcoder(this.length)
 
     if (typeof this.constant !== 'undefined') {
@@ -88,7 +88,7 @@ class Term {
     return Array(this.length).fill(0)
   }
 
-  decode(bytes: number[]) {
+  decode(bytes: number[]): number | string {
     const transcoder = new this.Transcoder(this.length)
 
     return transcoder.decode(bytes)
