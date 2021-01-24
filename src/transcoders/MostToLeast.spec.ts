@@ -1,4 +1,4 @@
-import MostToLeast from './MostToLeast'
+import { MostToLeast } from './MostToLeast'
 
 describe('MostToLeast Transcoder', () => {
   test('encode one byte', () => {

@@ -1,9 +1,9 @@
-import { Transcoder } from '../types'
+import { Transcoder } from './Transcoder'
 
 /*
  * Most to least significat 7bit chunks
  */
-class MostToLeast extends Transcoder {
+export class MostToLeast extends Transcoder {
   encode(value?: number): number[] {
     const bytes = []
 
@@ -38,5 +38,3 @@ class MostToLeast extends Transcoder {
     return value
   }
 }
-
-export default MostToLeast

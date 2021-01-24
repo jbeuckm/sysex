@@ -1,9 +1,9 @@
-import MostToLeast from './MostToLeast'
+import { MostToLeast } from './index'
 
 /*
  * Least to most significat 7bit chunks
  */
-class LeastToMost extends MostToLeast {
+export class LeastToMost extends MostToLeast {
   encode(value?: number): number[] {
     return super.encode(value).reverse()
   }
@@ -12,5 +12,3 @@ class LeastToMost extends MostToLeast {
     return super.decode(bytes.reverse())
   }
 }
-
-export default LeastToMost

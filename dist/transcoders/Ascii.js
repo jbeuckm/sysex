@@ -13,7 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("../types");
+exports.Ascii = void 0;
+var index_1 = require("./index");
 /*
  * Transcode a number as 7bit chunks right justified
  */
@@ -43,6 +44,6 @@ var Ascii = /** @class */ (function (_super) {
         return bytes.map(function (byte) { return String.fromCharCode(byte); }).join('');
     };
     return Ascii;
-}(types_1.Transcoder));
-exports.default = Ascii;
+}(index_1.Transcoder));
+exports.Ascii = Ascii;
 //# sourceMappingURL=Ascii.js.map

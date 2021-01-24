@@ -1,4 +1,4 @@
-import Ascii from './Ascii'
+import { Ascii } from './Ascii'
 
 const ASCII_A = 'a'.charCodeAt(0)
 const ASCII_B = 'b'.charCodeAt(0)

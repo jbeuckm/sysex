@@ -1,9 +1,9 @@
-import { Transcoder } from '../types'
+import { Transcoder } from './index'
 
 /*
  * Transcode a number as 7bit chunks right justified
  */
-class Ascii extends Transcoder {
+export class Ascii extends Transcoder {
   encode(value?: string): number[] {
     if (!value) {
       return Array(this.length).fill(0)
@@ -31,5 +31,3 @@ class Ascii extends Transcoder {
     return bytes.map(byte => String.fromCharCode(byte)).join('')
   }
 }
-
-export default Ascii

@@ -12,11 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var MostToLeast_1 = __importDefault(require("./MostToLeast"));
+exports.LeastToMost = void 0;
+var index_1 = require("./index");
 /*
  * Least to most significat 7bit chunks
  */
@@ -32,6 +30,6 @@ var LeastToMost = /** @class */ (function (_super) {
         return _super.prototype.decode.call(this, bytes.reverse());
     };
     return LeastToMost;
-}(MostToLeast_1.default));
-exports.default = LeastToMost;
+}(index_1.MostToLeast));
+exports.LeastToMost = LeastToMost;
 //# sourceMappingURL=LeastToMost.js.map

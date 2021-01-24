@@ -1,13 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+// import Transcoder from './Transcoder'
+// import MostToLeast from './MostToLeast'
+// import LeastToMost from './LeastToMost'
+// import Ascii from './Ascii'
+//
+// export { Transcoder, MostToLeast, LeastToMost, Ascii }
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Ascii = exports.LeastToMost = exports.MostToLeast = void 0;
-var MostToLeast_1 = __importDefault(require("./MostToLeast"));
-exports.MostToLeast = MostToLeast_1.default;
-var LeastToMost_1 = __importDefault(require("./LeastToMost"));
-exports.LeastToMost = LeastToMost_1.default;
-var Ascii_1 = __importDefault(require("./Ascii"));
-exports.Ascii = Ascii_1.default;
+__exportStar(require("./Transcoder"), exports);
+__exportStar(require("./MostToLeast"), exports);
+__exportStar(require("./LeastToMost"), exports);
+__exportStar(require("./Ascii"), exports);
 //# sourceMappingURL=index.js.map

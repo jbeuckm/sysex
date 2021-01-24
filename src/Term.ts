@@ -1,5 +1,5 @@
-import { SentenceFormat, Transcoder } from './types'
-import { Ascii, LeastToMost, MostToLeast } from './transcoders'
+import { SentenceFormat } from './types'
+import { Transcoder, Ascii, LeastToMost, MostToLeast } from './transcoders'
 
 const LENGTH_REGEX = /\[(\d+)\]$/
 const BYTE_REGEX = /^[0-9a-f]{2}$/

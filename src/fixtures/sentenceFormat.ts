@@ -1,5 +1,5 @@
 import { SentenceFormat } from '../types'
-import Ascii from '../transcoders/Ascii'
+import { Ascii } from '../transcoders'
 
 const format: SentenceFormat = {
   sentence: [

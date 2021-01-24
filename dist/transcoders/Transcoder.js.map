@@ -1,0 +1,1 @@
+{"version":3,"file":"Transcoder.js","sourceRoot":"","sources":["../../src/transcoders/Transcoder.ts"],"names":[],"mappings":";;;AAAA;IAGE,oBAAY,MAAc;QACxB,IAAI,CAAC,MAAM,GAAG,MAAM,CAAA;IACtB,CAAC;IAED,2BAAM,GAAN,UAAO,KAAuB;QAC5B,OAAO,EAAE,CAAA;IACX,CAAC;IAED,2BAAM,GAAN,UAAO,KAAe;QACpB,OAAO,CAAC,CAAA;IACV,CAAC;IACH,iBAAC;AAAD,CAAC,AAdD,IAcC;AAdY,gCAAU"}

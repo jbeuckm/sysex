@@ -13,7 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("../types");
+exports.MostToLeast = void 0;
+var Transcoder_1 = require("./Transcoder");
 /*
  * Most to least significat 7bit chunks
  */
@@ -48,6 +49,6 @@ var MostToLeast = /** @class */ (function (_super) {
         return value;
     };
     return MostToLeast;
-}(types_1.Transcoder));
-exports.default = MostToLeast;
+}(Transcoder_1.Transcoder));
+exports.MostToLeast = MostToLeast;
 //# sourceMappingURL=MostToLeast.js.map
