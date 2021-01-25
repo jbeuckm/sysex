@@ -1,4 +1,5 @@
 import Sentence from './Sentence'
+import { Options } from './transcoders'
 import TEST_FORMAT from './fixtures/sentenceFormat'
 
 describe('Sentence', () => {
@@ -29,5 +30,28 @@ describe('Sentence', () => {
     const values = sentence.decode(bytes)
 
     expect(values.name).toEqual('testcase')
+  })
+
+  test('transcode an Options term', () => {
+    const sentence = new Sentence({
+      sentence: ['loopType'],
+      transcoders: {
+        loopType: Options.withOptions({
+          forward: [0x00],
+          'backward/forward': [0x01],
+          none: [0x7f],
+        }),
+      },
+    })
+
+    expect(sentence.encode({ loopType: 'forward' })).toEqual([0x00])
+    expect(sentence.encode({ loopType: 'backward/forward' })).toEqual([0x01])
+    expect(sentence.encode({ loopType: 'none' })).toEqual([0x7f])
+    expect(() => sentence.encode({ loopType: '💥' })).toThrow()
+
+    expect(sentence.decode([0x00])).toEqual({ loopType: 'forward' })
+    expect(sentence.decode([0x01])).toEqual({ loopType: 'backward/forward' })
+    expect(sentence.decode([0x7f])).toEqual({ loopType: 'none' })
+    expect(() => sentence.decode([0x02])).toThrow()
   })
 })
