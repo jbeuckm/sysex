@@ -9,6 +9,7 @@ export class Options extends Transcoder {
   }
 
   static withOptions(options: Record<string, number[]>): typeof Transcoder {
+    // @ts-ignore
     return (length: number) => new Options(length, options)
   }
 
@@ -34,7 +35,7 @@ export class Options extends Transcoder {
     }
 
     throw `Options Transcoder can not decode unknown value \"${bytes
-      .map(n => n.toString(16))
+      .map((n) => n.toString(16))
       .join(',')}\".`
   }
 }
